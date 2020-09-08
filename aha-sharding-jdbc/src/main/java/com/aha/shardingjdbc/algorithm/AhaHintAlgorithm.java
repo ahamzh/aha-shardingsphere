@@ -1,7 +1,9 @@
 package com.aha.shardingjdbc.algorithm;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.api.sharding.hint.HintShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.hint.HintShardingValue;
 
@@ -11,16 +13,16 @@ import java.util.Collection;
 /**
  * @author shoufeng
  */
-public class AhaHintAlgorithm implements HintShardingAlgorithm<Long> {
+@Slf4j
+public class AhaHintAlgorithm implements HintShardingAlgorithm<String> {
     @SneakyThrows
     @Override
-    public Collection<String> doSharding(Collection<String> collection, HintShardingValue<Long> hintShardingValue) {
-        ArrayList<String> list = new ArrayList<>();
-        System.out.println("啊哈的hintShardingValue: " + hintShardingValue);
+    public Collection<String> doSharding(Collection<String> collection, HintShardingValue<String> hintShardingValue) {
         JsonMapper jsonMapper = new JsonMapper();
-        System.out.println("啊哈的collection: " + jsonMapper.writeValueAsString(collection));
-        list.add(collection.stream().findFirst().get());
+        log.info("可选集合: {}", jsonMapper.writeValueAsString(collection));
+        log.info("分片参数: {}", hintShardingValue);
+        //自定义逻辑，目前是我这边做的是不管什么参数都只拿返回第一个
 
-        return list;
+        return Lists.newArrayList(collection.stream().findFirst().get());
     }
 }
