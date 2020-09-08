@@ -1,0 +1,52 @@
+mybatis:
+    mapper-locations: classpath*:/mapper/*.xml
+server:
+    port: 8899
+spring:
+    application:
+        name: aha-shardingjdbc-app
+    shardingsphere:
+        datasource:
+            ds0:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                password: 123456
+                type: org.apache.commons.dbcp2.BasicDataSource
+                url: jdbc:mysql://localhost:3306/db0
+                username: root
+            ds1:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                password: 123456
+                type: org.apache.commons.dbcp2.BasicDataSource
+                url: jdbc:mysql://localhost:3306/db1
+                username: root
+            ds2:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                password: 123456
+                type: org.apache.commons.dbcp2.BasicDataSource
+                url: jdbc:mysql://localhost:3306/db2
+                username: root
+            names: ds0,ds1,ds2
+        props:
+            sql:
+                show: true
+        sharding:
+#            defaultTableStrategy:
+#                none:
+            #分库策略
+            default-database-strategy:
+                inline:
+                    algorithm-expression: ds$->{db_id % 2}
+                    sharding-column: db_id
+            tables:
+                #分表策略
+                sys_deptment:
+                    actual-data-nodes: ds$->{0..2}.sys_deptment_$->{0..2}
+                    databaseStrategy:
+                        hint:
+                            algorithmClassName: com.aha.shardingjdbc.algorithm.AhaHintAlgorithm
+                    table-strategy:
+                        hint:
+                            algorithmClassName: com.aha.shardingjdbc.algorithm.AhaHintAlgorithm
+#                        inline:
+#                            algorithm-expression: sys_deptment_$->{dept_id % 2}
+#                            sharding-column: dept_id
