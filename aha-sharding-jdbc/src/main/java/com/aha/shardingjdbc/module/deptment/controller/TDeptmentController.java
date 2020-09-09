@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 /**
  * 部门表（用hint根据部门名称分表）(TDeptment)表控制层
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:04:19
  */
 @RestController

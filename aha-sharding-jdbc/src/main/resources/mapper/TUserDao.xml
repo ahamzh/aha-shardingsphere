@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.aha.shardingjdbc.module.user.entity.TUser">
         <!--@Table t_user-->
         <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="userAge" column="user_age" jdbcType="INTEGER"/>
         <result property="userInfo" column="user_info" jdbcType="VARCHAR"/>
@@ -14,16 +15,14 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
-        select
-          id, user_name, user_age, user_info, create_time, update_time
+        select *
         from t_user
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
-        select
-          id, user_name, user_age, user_info, create_time, update_time
+        select *
         from t_user
         limit #{offset}, #{limit}
     </select>
@@ -31,7 +30,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, user_name, user_age, user_info, create_time, update_time
+        *
         from t_user
         <where>
             <if test="id != null">
@@ -56,15 +55,18 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into t_user(user_name, user_age, user_info, create_time, update_time)
-        values (#{userName}, #{userAge}, #{userInfo}, #{createTime}, #{updateTime})
-    </insert>
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into t_user(dept_id, user_name, user_age, user_info, create_time, update_time)-->
+<!--        values (#{deptId}, #{userName}, #{userAge}, #{userInfo}, #{createTime}, #{updateTime})-->
+<!--    </insert>-->
 
     <!--通过主键修改数据-->
     <update id="update">
         update t_user
         <set>
+            <if test="deptId != null and deptId != ''">
+                dept_id = #{deptId},
+            </if>
             <if test="userName != null and userName != ''">
                 user_name = #{userName},
             </if>

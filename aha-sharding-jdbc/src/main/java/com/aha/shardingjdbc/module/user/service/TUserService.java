@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 用户表（根据用户id分表）(TUser)表服务接口
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:43:47
  */
 public interface TUserService {

@@ -1,18 +1,19 @@
 package com.aha.shardingjdbc.module.deptment.service.impl;
 
-import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
 import com.aha.shardingjdbc.module.deptment.dao.TDeptmentDao;
+import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
 import com.aha.shardingjdbc.module.deptment.service.TDeptmentService;
 import org.apache.shardingsphere.api.hint.HintManager;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门表（用hint根据部门名称分表）(TDeptment)表服务实现类
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:04:19
  */
 @Service("tDeptmentService")
@@ -29,8 +30,8 @@ public class TDeptmentServiceImpl implements TDeptmentService {
     @Override
     public TDeptment queryById(Long id) {
         try (HintManager hintManager = HintManager.getInstance();) {
-            hintManager.addDatabaseShardingValue("t_deptment", "first");
-            hintManager.addTableShardingValue("t_deptment", "first");
+            hintManager.addDatabaseShardingValue("t_deptment", "1");
+            hintManager.addTableShardingValue("t_deptment", "1");
             return this.tDeptmentDao.queryById(id);
         }
     }
@@ -55,7 +56,11 @@ public class TDeptmentServiceImpl implements TDeptmentService {
      */
     @Override
     public TDeptment insert(TDeptment tDeptment) {
-        this.tDeptmentDao.insert(tDeptment);
+//        try (HintManager hintManager = HintManager.getInstance();) {
+//            hintManager.addDatabaseShardingValue("t_deptment", tDeptment.getAreaCode());
+//            hintManager.addTableShardingValue("t_deptment", tDeptment.getId());
+            this.tDeptmentDao.insert(tDeptment);
+//        }
         return tDeptment;
     }
 
@@ -80,5 +85,13 @@ public class TDeptmentServiceImpl implements TDeptmentService {
     @Override
     public boolean deleteById(Long id) {
         return this.tDeptmentDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectUserWithDept(String araCode, Long userId, Long deptId) {
+        try (HintManager hintManager = HintManager.getInstance();) {
+            hintManager.addDatabaseShardingValue("t_deptment", araCode);
+            return tDeptmentDao.selectUserWithDept(araCode, userId, deptId);
+        }
     }
 }

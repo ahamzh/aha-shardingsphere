@@ -1,16 +1,18 @@
 package com.aha.shardingjdbc.module.user.dao;
 
 import com.aha.shardingjdbc.module.user.entity.TUser;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
  * 用户表（根据用户id分表）(TUser)表数据库访问层
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:43:46
  */
-public interface TUserDao {
+public interface TUserDao extends BaseMapper<TUser> {
 
     /**
      * 通过ID查询单条数据
@@ -44,7 +46,7 @@ public interface TUserDao {
      * @param tUser 实例对象
      * @return 影响行数
      */
-    int insert(TUser tUser);
+//    int insert(TUser tUser);
 
     /**
      * 修改数据

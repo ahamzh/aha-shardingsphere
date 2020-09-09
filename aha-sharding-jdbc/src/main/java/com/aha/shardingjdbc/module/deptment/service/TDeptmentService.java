@@ -1,12 +1,14 @@
 package com.aha.shardingjdbc.module.deptment.service;
 
 import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门表（用hint根据部门名称分表）(TDeptment)表服务接口
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:04:19
  */
 public interface TDeptmentService {
@@ -51,5 +53,7 @@ public interface TDeptmentService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    List<Map<String, Object>> selectUserWithDept(String araCode, Long userId, Long deptId);
 
 }

@@ -1,16 +1,20 @@
 package com.aha.shardingjdbc.module.deptment.dao;
 
 import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门表（用hint根据部门名称分表）(TDeptment)表数据库访问层
  *
- * @author makejava
+ * @author ahamzh
  * @since 2020-09-09 00:04:18
  */
-public interface TDeptmentDao {
+public interface TDeptmentDao extends BaseMapper<TDeptment> {
 
     /**
      * 通过ID查询单条数据
@@ -44,7 +48,7 @@ public interface TDeptmentDao {
      * @param tDeptment 实例对象
      * @return 影响行数
      */
-    int insert(TDeptment tDeptment);
+//    int insert(TDeptment tDeptment);
 
     /**
      * 修改数据
@@ -62,4 +66,14 @@ public interface TDeptmentDao {
      */
     int deleteById(Long id);
 
+    @Select("select * from t_user as a " +
+            "left join t_deptment as b on a.dept_id = b.id " +
+            "where " +
+            "b.area_code = #{areaCode} and " +
+            "a.id  = #{userId} and b.id = #{deptId} "
+    )
+    List<Map<String, Object>> selectUserWithDept(@Param("areaCode") String areaCode, @Param("userId") Long userId, @Param("deptId") Long deptId);
+
+    @Select("select * from t_deptment as b where b.area_code = #{areaCode} ")
+    List<Map<String, Object>> selectDeptByAreaCode(@Param("areaCode") String areaCode);
 }
