@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户表（根据用户id分表）(TUser0)实体类
+ * 用户表（根据用户id分表）(TUser)实体类
  *
  * @author makejava
  * @since 2020-09-09 00:43:45

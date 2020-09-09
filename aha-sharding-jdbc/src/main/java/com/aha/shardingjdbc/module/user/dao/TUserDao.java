@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 用户表（根据用户id分表）(TUser0)表数据库访问层
+ * 用户表（根据用户id分表）(TUser)表数据库访问层
  *
  * @author makejava
  * @since 2020-09-09 00:43:46

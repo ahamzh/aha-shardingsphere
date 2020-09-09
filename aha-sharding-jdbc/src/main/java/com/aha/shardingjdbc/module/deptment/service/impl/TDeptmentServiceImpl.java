@@ -10,12 +10,12 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 部门表（用hint根据部门名称分表）(TDeptment0)表服务实现类
+ * 部门表（用hint根据部门名称分表）(TDeptment)表服务实现类
  *
  * @author makejava
  * @since 2020-09-09 00:04:19
  */
-@Service("tDeptment0Service")
+@Service("TDeptmentService")
 public class TDeptmentServiceImpl implements TDeptmentService {
     @Resource
     private TDeptmentDao tDeptmentDao;

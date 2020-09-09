@@ -4,7 +4,7 @@ import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
 import java.util.List;
 
 /**
- * 部门表（用hint根据部门名称分表）(TDeptment0)表服务接口
+ * 部门表（用hint根据部门名称分表）(TDeptment)表服务接口
  *
  * @author makejava
  * @since 2020-09-09 00:04:19

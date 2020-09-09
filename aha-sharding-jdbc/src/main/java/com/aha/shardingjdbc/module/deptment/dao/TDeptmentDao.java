@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 部门表（用hint根据部门名称分表）(TDeptment0)表数据库访问层
+ * 部门表（用hint根据部门名称分表）(TDeptment)表数据库访问层
  *
  * @author makejava
  * @since 2020-09-09 00:04:18

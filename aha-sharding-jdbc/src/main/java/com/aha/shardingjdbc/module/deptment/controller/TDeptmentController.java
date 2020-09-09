@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 部门表（用hint根据部门名称分表）(TDeptment0)表控制层
+ * 部门表（用hint根据部门名称分表）(TDeptment)表控制层
  *
  * @author makejava
  * @since 2020-09-09 00:04:19
@@ -19,7 +19,7 @@ public class TDeptmentController {
      * 服务对象
      */
     @Resource
-    private TDeptmentService tDeptment0Service;
+    private TDeptmentService TDeptmentService;
 
     /**
      * 通过主键查询单条数据
@@ -29,7 +29,7 @@ public class TDeptmentController {
      */
     @GetMapping("selectOne")
     public TDeptment selectOne(Long id) {
-        return this.tDeptment0Service.queryById(id);
+        return this.TDeptmentService.queryById(id);
     }
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 用户表（根据用户id分表）(TUser0)表控制层
+ * 用户表（根据用户id分表）(TUser)表控制层
  *
  * @author makejava
  * @since 2020-09-09 00:43:48
