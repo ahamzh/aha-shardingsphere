@@ -2,7 +2,9 @@ package com.aha.shardingjdbc.module.deptment.controller;
 
 import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
 import com.aha.shardingjdbc.module.deptment.service.TDeptmentService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -19,7 +21,7 @@ public class TDeptmentController {
      * 服务对象
      */
     @Resource
-    private TDeptmentService TDeptmentService;
+    private TDeptmentService tDeptmentService;
 
     /**
      * 通过主键查询单条数据
@@ -29,7 +31,7 @@ public class TDeptmentController {
      */
     @GetMapping("selectOne")
     public TDeptment selectOne(Long id) {
-        return this.TDeptmentService.queryById(id);
+        return this.tDeptmentService.queryById(id);
     }
 
 }

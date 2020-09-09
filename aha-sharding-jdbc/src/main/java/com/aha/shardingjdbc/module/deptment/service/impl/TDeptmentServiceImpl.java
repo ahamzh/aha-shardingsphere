@@ -15,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-09-09 00:04:19
  */
-@Service("TDeptmentService")
+@Service("tDeptmentService")
 public class TDeptmentServiceImpl implements TDeptmentService {
     @Resource
     private TDeptmentDao tDeptmentDao;
