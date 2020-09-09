@@ -5,6 +5,8 @@ import com.aha.shardingjdbc.module.code.entity.TCode;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+
 public class TCodeDaoTest extends AhaShardingJdbcApplicationTests {
 
     @Autowired
@@ -18,4 +20,8 @@ public class TCodeDaoTest extends AhaShardingJdbcApplicationTests {
                 .codeName("第一个codeName").build());
     }
 
+    @Test
+    public void test11(){
+        tCodeDao.selectByMap(new HashMap<>());
+    }
 }
