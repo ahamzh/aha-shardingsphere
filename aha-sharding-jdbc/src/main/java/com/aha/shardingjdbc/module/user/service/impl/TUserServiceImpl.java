@@ -3,19 +3,26 @@ package com.aha.shardingjdbc.module.user.service.impl;
 import com.aha.shardingjdbc.module.user.entity.TUser;
 import com.aha.shardingjdbc.module.user.dao.TUserDao;
 import com.aha.shardingjdbc.module.user.service.TUserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.shardingsphere.transaction.annotation.ShardingTransactionType;
+import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 跨库操作必须开启分布式事务，不然无法保证事务一致性
  * 用户表（根据用户id分表）(TUser)表服务实现类
  *
  * @author ahamzh
  * @since 2020-09-09 00:43:47
  */
 @Service("tUserService")
-public class TUserServiceImpl implements TUserService {
+@Transactional(rollbackFor = Exception.class)
+@ShardingTransactionType(value = TransactionType.XA)
+public class TUserServiceImpl extends ServiceImpl<TUserDao, TUser> implements TUserService {
     @Resource
     private TUserDao tUserDao;
 
@@ -34,7 +41,7 @@ public class TUserServiceImpl implements TUserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -75,5 +82,13 @@ public class TUserServiceImpl implements TUserService {
     @Override
     public boolean deleteById(Long id) {
         return this.tUserDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void insertUsers() throws Exception {
+        for (int i = 0; i < 3; i++) {
+            insert(TUser.builder().deptId(1L).userName("第" + i + "个用户").build());
+        }
+        throw new Exception("自定义异常");
     }
 }

@@ -11,19 +11,19 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: 123456
         type: org.apache.commons.dbcp2.BasicDataSource
-        url: jdbc:mysql://localhost:3306/aha_db_0?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+        url: jdbc:mysql://192.168.189.1:3306/aha_db_0?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
         username: root
       ds1:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: 123456
         type: org.apache.commons.dbcp2.BasicDataSource
-        url: jdbc:mysql://localhost:3306/aha_db_1?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+        url: jdbc:mysql://192.168.189.1:3306/aha_db_1?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
         username: root
       ds2:
         driver-class-name: com.mysql.cj.jdbc.Driver
         password: 123456
         type: org.apache.commons.dbcp2.BasicDataSource
-        url: jdbc:mysql://localhost:3306/aha_db_2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+        url: jdbc:mysql://192.168.189.1:3306/aha_db_2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
         username: root
       names: ds0,ds1,ds2
     props:

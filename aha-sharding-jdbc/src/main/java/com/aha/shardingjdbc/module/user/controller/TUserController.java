@@ -32,4 +32,8 @@ public class TUserController {
         return this.tUserService.queryById(id);
     }
 
+    @GetMapping("/insetUsers")
+    public void insetUsers() throws Exception {
+        tUserService.insertUsers();
+    }
 }

@@ -1,6 +1,8 @@
 package com.aha.shardingjdbc.module.user.service;
 
 import com.aha.shardingjdbc.module.user.entity.TUser;
+import com.baomidou.mybatisplus.extension.service.IService;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ import java.util.List;
  * @author ahamzh
  * @since 2020-09-09 00:43:47
  */
-public interface TUserService {
+public interface TUserService extends IService<TUser> {
 
     /**
      * 通过ID查询单条数据
@@ -51,5 +53,7 @@ public interface TUserService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    void insertUsers() throws Exception;
 
 }
