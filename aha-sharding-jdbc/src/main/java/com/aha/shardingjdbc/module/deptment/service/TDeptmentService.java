@@ -1,6 +1,7 @@
 package com.aha.shardingjdbc.module.deptment.service;
 
 import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
  * @author ahamzh
  * @since 2020-09-09 00:04:19
  */
-public interface TDeptmentService {
+public interface TDeptmentService extends IService<TDeptment> {
 
     /**
      * 通过ID查询单条数据

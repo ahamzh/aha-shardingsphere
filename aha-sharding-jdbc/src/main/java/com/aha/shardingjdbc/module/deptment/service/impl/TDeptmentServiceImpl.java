@@ -3,6 +3,7 @@ package com.aha.shardingjdbc.module.deptment.service.impl;
 import com.aha.shardingjdbc.module.deptment.dao.TDeptmentDao;
 import com.aha.shardingjdbc.module.deptment.entity.TDeptment;
 import com.aha.shardingjdbc.module.deptment.service.TDeptmentService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.shardingsphere.api.hint.HintManager;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * @since 2020-09-09 00:04:19
  */
 @Service("tDeptmentService")
-public class TDeptmentServiceImpl implements TDeptmentService {
+public class TDeptmentServiceImpl extends ServiceImpl<TDeptmentDao, TDeptment> implements TDeptmentService {
     @Resource
     private TDeptmentDao tDeptmentDao;
 
