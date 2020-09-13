@@ -21,7 +21,8 @@ import java.util.List;
  */
 @Service("tUserService")
 @Transactional(rollbackFor = Exception.class)
-@ShardingTransactionType(value = TransactionType.XA)
+//@ShardingTransactionType(value = TransactionType.XA)
+@ShardingTransactionType(value = TransactionType.BASE)
 public class TUserServiceImpl extends ServiceImpl<TUserDao, TUser> implements TUserService {
     @Resource
     private TUserDao tUserDao;

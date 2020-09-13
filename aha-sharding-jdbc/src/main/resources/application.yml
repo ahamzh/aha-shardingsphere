@@ -65,3 +65,23 @@ spring:
             inline:
                 algorithm-expression: t_deptment_$->{id % 3}
                 sharding-column: id
+
+  cloud:
+    nacos:
+      # Nacos 作为注册中心的配置项，对应 NacosDiscoveryProperties 配置类
+      discovery:
+        server-addr: 192.168.189.133:8848 # Nacos 服务器地址
+        group: ${spring.application.name}-group
+
+seata:
+  application-id: ${spring.application.name} # Seata 应用名称，默认使用 ${spring.application.name}
+  tx-service-group: default # Seata 事务组, 高版本没找到相关配置, 是否可配置未知 选用默认default
+  # 服务配置项
+  service:
+    # 虚拟组和分组的映射 1.0.0以上好像将vgroup-mapping 改为 vgroupMapping, 此处是否影响未测试
+    vgroupMapping:
+      # 此处Key对应 tx-service-group 的 Value, 此处 value 默认 default
+      default: default
+    # 分组和 Seata 服务的映射 默认端口8091
+    grouplist:
+      default: 192.168.189.133:8091
